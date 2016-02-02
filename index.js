@@ -59,6 +59,9 @@ exports.changes = function (db, q) {
           feed.pause();
         }
       });
+      if (q.on_catchup && typeof q.on_catchup === 'function') {
+        feed.on('catchup', q.on_catchup)
+      }      
     });
     var _resume = output.resume;
     output.resume = function () {
